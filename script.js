@@ -1,11 +1,11 @@
+// variables user can choose from when prompted
 var numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 var lowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 var uppercase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 var special = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")"]
 
 
-// We need a function that prompts the user for the various passowrd options including length,
-// Also we need to put a limitation on length (some kind of conditional)
+// prompts - including length - user can choose to create password
 var generatePassword = function () {
 function chooseCriteria() {
     var passwordLength = prompt("Please choose and enter password length between 8-128 characters:");
@@ -26,11 +26,16 @@ function chooseCriteria() {
     }
     return passwordObject;
 }
+chooseCriteria();
+
+
 // We need another function for the random generation of characters
 function randomMechanism(array) {
     var randomPassword = array[Math.floor(Math.random() * array.passwordLength)]
     return randomPassword;
 }
+
+return finalPassword();
 
 // We need another function that actually puts the password together (concat and places into empty array)
 // statement that adds the array of each choice, numbers, letters, characters based on whatever the user has inputted
@@ -58,7 +63,7 @@ function finalPassword() {
         confirmChar.push(randomMechanism(special))
     }
 
-for( var i = 0; i < answers.length; i++) {
+for( var i = 0; i < answers.passwordLength; i++) {
     var possibleChar = randomMechanism(possibleChar);
     final.push(possibleChar);
     
@@ -68,12 +73,15 @@ for( var i = 0; i < confirmChar.length; i++) {
     final[i] = confirmChar[i];
     
 }
-// need to convert to text format
 
+
+
+// converts to text format
 return final.join('')
 
 }
 }
+generatePassword();
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
